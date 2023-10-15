@@ -1,0 +1,74 @@
+class ConvBlock(nn.Module):
+    def __init__(self, in_channels, out_channels, kernel_size, stride, activation, skip_connection=False):
+        super(ConvBlock, self).__init__()
+        self.skip_connection = skip_connection
+
+        self.conv = nn.Conv3d(in_channels, out_channels, kernel_size, stride=stride, padding=1, bias=False)
+        self.bn = nn.BatchNorm3d(out_channels)
+        self.activ = activation()
+
+    def forward(self, inputs):
+        x = inputs
+        x = self.conv(x)
+        x = self.bn(x)
+        x = self.activ(x)
+        if self.skip_connection:
+            x = x + inputs
+        return x
+
+class ConvTransposeBlock(nn.Module):
+    def __init__(self, in_channels, out_channels, kernel_size, stride, activation, skip_connection=False):
+        super(ConvTransposeBlock, self).__init__()
+        self.skip_connection = skip_connection
+
+        self.conv = nn.ConvTranspose3d(in_channels, out_channels, kernel_size, stride=stride, padding=1, bias=False)
+        self.bn = nn.BatchNorm3d(out_channels)
+        self.activ = activation()
+
+    def forward(self, inputs):
+        x = inputs
+        x = self.conv(x)
+        x = self.bn(x)
+        x = self.activ(x)
+        if self.skip_connection:
+            x = x + inputs
+        return x
+
+class Autoencoder(nn.Module):
+    def __init__(self):
+        super(Autoencoder, self).__init__()
+
+        self.encoder = nn.Sequential(
+            nn.Conv3d(1, 8, kernel_size=3, stride=2, padding=1),
+            ConvBlock(8, 8, 3, 1, nn.LeakyReLU, skip_connection=False),
+            nn.Dropout(0.2),
+            ConvBlock(8, 16, 3, 2, nn.LeakyReLU, skip_connection=False),
+            ConvBlock(16, 16, 3, 1, nn.LeakyReLU, skip_connection=False),
+            nn.Dropout(0.2),
+            ConvBlock(16, 24, 3, 2, nn.LeakyReLU, skip_connection=False),
+            ConvBlock(24, 24, 3, 1, nn.LeakyReLU, skip_connection=False),
+            nn.Dropout(0.2),
+            ConvBlock(24, 32, 3, 2, nn.LeakyReLU, skip_connection=False),
+            ConvBlock(32, 32, 3, 1, nn.LeakyReLU, skip_connection=False),
+            ConvBlock(32, 4, 3, 1, nn.LeakyReLU, skip_connection=False)
+        )
+
+        self.decoder = nn.Sequential(
+            ConvTransposeBlock(4, 32, 3, 1, nn.LeakyReLU, skip_connection=False),
+            ConvTransposeBlock(32, 32, 3, 2, nn.LeakyReLU, skip_connection=False),
+            nn.Dropout(0.2),
+            ConvTransposeBlock(32, 24, 3, 1, nn.LeakyReLU, skip_connection=False),
+            ConvTransposeBlock(24, 24, 3, 2, nn.LeakyReLU, skip_connection=False),
+            nn.Dropout(0.2),
+            ConvTransposeBlock(24, 16, 3, 1, nn.LeakyReLU, skip_connection=False),
+            ConvTransposeBlock(16, 16, 3, 2, nn.LeakyReLU, skip_connection=False),
+            nn.Dropout(0.2),
+            ConvTransposeBlock(16, 8, 3, 1, nn.LeakyReLU, skip_connection=False),
+            ConvTransposeBlock(8, 8, 3, 1, nn.LeakyReLU, skip_connection=False),
+            nn.ConvTranspose3d(8, 1, kernel_size=3, stride=2, padding=1, bias=False)
+        )
+
+    def forward(self, x):
+        encoded = self.encoder(x)
+        decoded = self.decoder(encoded)
+        return decoded
