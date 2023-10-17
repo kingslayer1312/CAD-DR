@@ -1,5 +1,5 @@
 abc-dataset-stl/
 abc-dataset-step/
 abc-dataset-ply/
-__pycache__
+__pycache__/
 .vscode
