@@ -1,5 +1,7 @@
 abc-dataset-stl/
 abc-dataset-step/
 abc-dataset-ply/
+output-point-clouds/
+output-stl/
 __pycache__/
 .vscode

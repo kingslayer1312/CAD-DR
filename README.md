@@ -25,5 +25,10 @@ The model was created using TensorFlow 2.14. Usage of GPU is suggested, and the 
 | open3d | 0.17.0 |
 
 The autoencoder.ipynb file contains code for visualizing in open3d as well as matplotlib.  
-The matplotlib visualization will work on all systems while the open3d visualization is geared towards a higher quality, interactive visualization.
+The matplotlib visualization will work on all systems while the open3d visualization is geared towards a higher quality, interactive visualization.  
 
+## Instructions
+
+1. Run ConversionUtils.py
+2. Run Visualization.py
+3. Only then, run the autoencoder.ipynb notebook
