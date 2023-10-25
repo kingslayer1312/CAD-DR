@@ -13,10 +13,10 @@ class ConversionUtils:
                 file_list.append(filename)
         return file_list
     
-    def stl_to_ply(path):
+    def stl_to_ply(path, x):
         imported_file_name = Path(path).stem
         mesh = o3d.io.read_triangle_mesh(path)
-        pcd = mesh.sample_points_uniformly(number_of_points=10000)
+        pcd = mesh.sample_points_uniformly(number_of_points=x)
         exported_file_name = "abc-dataset-ply/" + imported_file_name + ".ply"
         o3d.io.write_point_cloud(exported_file_name, pcd, write_ascii=True, compressed=False, print_progress=False)
     
