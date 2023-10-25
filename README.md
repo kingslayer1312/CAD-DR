@@ -1,11 +1,12 @@
 # CAD-DR: CAD Dimensionality Reduction
 
 ## Introduction
-A 3D convolutional autoencoder I had developed as a part of my internship at Mahindra & Mahindra. The autoencoder is made for the purpose of dimensionality reduction of 3D CAD models.    
+A 3D convolutional autoencoder I had developed as a part of my internship at Mahindra & Mahindra. The autoencoder is made for the purpose of dimensionality reduction of 3D CAD models.  
+Multiple models having different parameters but overall a similar architecture are present in this repository.  
 
 ## Details
-- The model was trained on 320 models from the ABC dataset
-- The train dataset comprises of 80 models from the same
+- The models was trained on 800 models from the ABC dataset
+- The train dataset comprises of 200 models from the same
 - Input format: STL
 - The STL files are first converted to point cloud (.ply), and then to 3D binary voxel arrays
 
