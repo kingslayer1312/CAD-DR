@@ -30,6 +30,9 @@ The matplotlib visualization will work on all systems while the open3d visualiza
 
 ## Instructions
 
-1. Run ConversionUtils.py
-2. Run Visualization.py
-3. Only then, run the autoencoder.ipynb notebook
+### Training
+1. Once you clone the repository, create folders in the main directory called "abc-dataset-stl" and "abc-dataset-ply"
+2. Download a chunk ABC dataset in STL format.
+3. Move 1000 STL files to the abc-dataset-stl directory
+4. The autoencoder notebooks can then be run. Additional informations can be found in the notebooks.
+5. In case you wish to train the model on a larger dataset, the code can be modified accordingly.
