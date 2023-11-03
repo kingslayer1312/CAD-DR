@@ -1,7 +1,7 @@
 # CAD-DR: CAD Dimensionality Reduction
 
 ## Introduction
-A 3D convolutional autoencoder I had developed as a part of my internship at Mahindra & Mahindra. The autoencoder is made for the purpose of dimensionality reduction of 3D CAD models.  
+A 3D convolutional autoencoder for the purpose of dimensionality reduction of CAD models. The autoencoder is based on the EfficientNet architecture.  
 Multiple models having different parameters but overall a similar architecture are present in this repository.  
 
 ## Details
