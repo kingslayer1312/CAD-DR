@@ -32,13 +32,12 @@ class Visualization:
         ax.set_box_aspect([1, 1, 1])
         plt.show()
 
-    def open3d_visualize_original(original_sample, path):
+    def open3d_visualize_original(original_sample):
         voxel_data = original_sample
         x, y, z = np.where(voxel_data == 1)
         points = np.column_stack((x, y, z))
         point_cloud = o3d.geometry.PointCloud()
         point_cloud.points = o3d.utility.Vector3dVector(points)
-        o3d.io.write_point_cloud(path, point_cloud)
         visualizer = o3d.visualization.Visualizer()
         visualizer.create_window()
         visualizer.add_geometry(point_cloud)
@@ -48,13 +47,12 @@ class Visualization:
         visualizer.run()
         visualizer.destroy_window()
 
-    def open3d_visualize_reconstructed(reconstructed_sample, path):
+    def open3d_visualize_reconstructed(reconstructed_sample):
         voxel_data = reconstructed_sample
         x, y, z = np.where(voxel_data == 1)
         points = np.column_stack((x, y, z))
         point_cloud = o3d.geometry.PointCloud()
         point_cloud.points = o3d.utility.Vector3dVector(points)
-        o3d.io.write_point_cloud(path, point_cloud)
         visualizer = o3d.visualization.Visualizer()
         visualizer.create_window()
         visualizer.add_geometry(point_cloud)

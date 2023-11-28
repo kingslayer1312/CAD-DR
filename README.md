@@ -1,16 +1,17 @@
 # CAD-DR: CAD Dimensionality Reduction
 
 ## Introduction
-A 3D convolutional autoencoder for the purpose of dimensionality reduction of CAD models. The autoencoder is based on the EfficientNet architecture.  
-Multiple models having different parameters but overall a similar architecture are present in this repository.  
+A 3D convolutional autoencoder for the purpose of dimensionality reduction of CAD models. The autoencoder is based on the EfficientNet architecture. The development took place on a system having the following specifications:
+
+- CPU: Ryzen 7 4800H
+- GPU: Nvidia GTX 1660 Ti
+- Ubuntu 22.04
 
 ## Details
 - The models was trained on 800 models from the ABC dataset
 - The train dataset comprises of 200 models from the same
 - Input format: STL
 - The STL files are first converted to point cloud (.ply), and then to 3D binary voxel arrays
-
-This project is currently a WIP.
 
 ## Requirements
 The model was created using TensorFlow 2.14. Usage of GPU is suggested, and the TensorFlow installation for the same can be done using pip: 
