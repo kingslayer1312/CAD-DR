@@ -1,3 +1,6 @@
+# Author: Hrishikesh Naramparambath
+# Class for open3d and matplotlib visualizations of original and reconstructed models
+
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D

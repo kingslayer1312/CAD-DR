@@ -1,3 +1,6 @@
+# Author: Hrishikesh Naramparambath
+# Utility class for conversion of STL files to point cloud and point cloud to binvox array
+
 import open3d as o3d
 import numpy as np
 from pathlib import Path
